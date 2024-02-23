@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:fos_scraper/settings/settings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,8 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
             body: const Text('HOME'),
           ),
           PaneItem(
-            icon: const Icon(FluentIcons.calculator),
-            title: const Text('Counter'),
+            icon: const Icon(FluentIcons.history),
+            title: const Text('History'),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -68,10 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
+        ],
+        footerItems: [
           PaneItem(
             icon: const Icon(FluentIcons.settings),
             title: const Text('Settings'),
-            body: const Text('SETTINGS'),
+            body: const Settings(),
           ),
         ],
       ),
