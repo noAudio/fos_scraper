@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> results = [];
     return const Screen(
-      heading: 'Home',
+      heading: 'Search Criteria',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
