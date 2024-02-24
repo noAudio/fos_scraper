@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:fos_scraper/home/home.dart';
 import 'package:fos_scraper/settings/settings.dart';
 
 void main() {
@@ -30,14 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   int topIndex = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
           PaneItem(
             icon: const Icon(FluentIcons.home),
             title: const Text('Home'),
-            body: const Text('HOME'),
+            body: const Home(),
           ),
           PaneItem(
             icon: const Icon(FluentIcons.history),
