@@ -76,6 +76,11 @@ class _MyHomePageState extends State<MyHomePage> {
             title: const Text('Settings'),
             body: const Settings(),
           ),
+          PaneItem(
+            icon: const Icon(FluentIcons.help),
+            title: const Text('Support'),
+            body: const Text('SUPPORT'),
+          )
         ],
       ),
     );
