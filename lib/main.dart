@@ -55,19 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
           PaneItem(
             icon: const Icon(FluentIcons.history),
             title: const Text('History'),
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('You have pushed the button this many times:'),
-                  Text('$_counter'),
-                  Button(
-                    onPressed: _incrementCounter,
-                    child: const Text('Increment'),
-                  ),
-                ],
-              ),
-            ),
+            body: const Text('HS458398'),
           ),
         ],
         footerItems: [
