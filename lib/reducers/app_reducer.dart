@@ -1,4 +1,5 @@
 import 'package:fos_scraper/actions/index.dart';
+import 'package:fos_scraper/actions/remove_decisions_action.dart';
 import 'package:fos_scraper/enums/within_options_enum.dart';
 import 'package:fos_scraper/models/app_state.dart';
 
@@ -11,8 +12,12 @@ AppState appReducer(AppState state, dynamic action) {
     return state.copyWith(withinOptions: action.withinOptions);
   } else if (action is SetDateRangeAction) {
     return state.copyWith(startDate: action.startDate, endDate: action.endDate);
-  } else if (action is SetDecisionsAction) {
-    return state.copyWith(decisions: action.decisions);
+  } else if (action is AddDecisionsAction) {
+    return state.copyWith(decisions: [...state.decisions, action.decision]);
+  } else if (action is RemoveDecisionsAction) {
+    var decisionsList = state.decisions;
+    decisionsList.remove(action.decision);
+    return state.copyWith(decisions: decisionsList);
   } else if (action is SetSearchAction) {
     return state.copyWith(isSearching: action.isSearching);
   } else if (action is SetInputErrorMessageAction) {
