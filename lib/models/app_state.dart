@@ -1,10 +1,13 @@
+import 'package:fos_scraper/enums/decisions_enum.dart';
+import 'package:fos_scraper/enums/within_options_enum.dart';
+
 class AppState {
   final String keyWord;
   final String businessName;
-  final List<String> withinOptions;
+  final List<WithinOptionsEnum> withinOptions;
   final DateTime startDate;
   final DateTime endDate;
-  final List<String> decisions;
+  final List<Decisions> decisions;
   final bool isSearching;
   final String inputErrorMessage;
   final String logicErrorMessage;
