@@ -8,8 +8,9 @@ AppState appReducer(AppState state, dynamic action) {
     return state.copyWith(keyWord: action.keyWord);
   } else if (action is SetBusinessNameAction) {
     return state.copyWith(businessName: action.businessName);
-  } else if (action is SetWithinOptionsAction) {
-    return state.copyWith(withinOptions: action.withinOptions);
+  } else if (action is AddWithinOptionsAction) {
+    return state
+        .copyWith(withinOptions: [...state.withinOptions, action.withinOption]);
   } else if (action is SetDateRangeAction) {
     return state.copyWith(startDate: action.startDate, endDate: action.endDate);
   } else if (action is AddDecisionsAction) {
