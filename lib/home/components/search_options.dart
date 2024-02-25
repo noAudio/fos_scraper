@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/widgets.dart';
 import 'package:fluent_ui/fluent_ui.dart' as fl;
+import 'package:fos_scraper/scrape_status/scrape_status.dart';
 
 class SearchOptions extends StatefulWidget {
   const SearchOptions({super.key});
@@ -97,6 +96,7 @@ class _SearchOptionsState extends State<SearchOptions> {
           child: const fl.Text('Search'),
           onPressed: () => setState(() => print('Searching!')),
         ),
+        const ScrapeStatus(),
       ],
     );
   }
