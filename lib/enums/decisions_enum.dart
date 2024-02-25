@@ -1,0 +1,4 @@
+enum Decisions {
+  upheld,
+  notUpheld,
+}
