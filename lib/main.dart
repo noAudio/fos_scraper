@@ -1,8 +1,18 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fos_scraper/home/home.dart';
+import 'package:fos_scraper/models/app_state.dart';
+import 'package:fos_scraper/reducers/app_reducer.dart';
+import 'package:redux/redux.dart';
 
 void main() {
-  runApp(const MyApp());
+  final store = Store<AppState>(appReducer, initialState: AppState.initial());
+  runApp(
+    StoreProvider<AppState>(
+      store: store,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
