@@ -11,6 +11,7 @@ AppState appReducer(AppState state, dynamic action) {
   } else if (action is AddWithinOptionsAction) {
     return state
         .copyWith(withinOptions: [...state.withinOptions, action.withinOption]);
+    // TODO: create RemoveWithinOptionsAction
   } else if (action is SetDateRangeAction) {
     return state.copyWith(startDate: action.startDate, endDate: action.endDate);
   } else if (action is AddDecisionsAction) {
