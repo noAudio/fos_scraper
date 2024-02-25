@@ -8,16 +8,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> results = [];
     return const Screen(
-      heading: 'Search Criteria',
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SearchOptions(),
-          Column(),
-        ],
-      ),
+      child: SearchOptions(),
     );
   }
 }
