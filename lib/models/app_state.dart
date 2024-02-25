@@ -24,6 +24,30 @@ class AppState {
     required this.logicErrorMessage,
   });
 
+  AppState copyWith({
+    String? keyWord,
+    String? businessName,
+    List<WithinOptionsEnum>? withinOptions,
+    DateTime? startDate,
+    DateTime? endDate,
+    List<Decisions>? decisions,
+    bool? isSearching,
+    String? inputErrorMessage,
+    String? logicErrorMessage,
+  }) {
+    return AppState(
+      keyWord: keyWord ?? this.keyWord,
+      businessName: businessName ?? this.businessName,
+      withinOptions: withinOptions ?? this.withinOptions,
+      startDate: startDate ?? this.startDate,
+      endDate: endDate ?? this.endDate,
+      decisions: decisions ?? this.decisions,
+      isSearching: isSearching ?? this.isSearching,
+      inputErrorMessage: inputErrorMessage ?? this.inputErrorMessage,
+      logicErrorMessage: logicErrorMessage ?? this.logicErrorMessage,
+    );
+  }
+
   factory AppState.initial() => AppState(
         keyWord: '',
         businessName: '',
