@@ -1,9 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 class Screen extends StatelessWidget {
-  final String heading;
   final Widget child;
-  const Screen({super.key, required this.heading, required this.child});
+  const Screen({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,6 @@ class Screen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(heading),
           child,
         ],
       ),
