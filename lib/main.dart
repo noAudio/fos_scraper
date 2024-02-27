@@ -21,10 +21,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FluentApp(
-      title: 'Flutter Demo',
+      title: 'Scraper',
       debugShowCheckedModeBanner: false,
       theme: FluentThemeData(
         accentColor: Colors.blue,
+        brightness: Brightness.dark,
       ),
       home: const MyHomePage(),
     );
