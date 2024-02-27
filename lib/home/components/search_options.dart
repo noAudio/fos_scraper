@@ -7,6 +7,7 @@ import 'package:fos_scraper/enums/within_options_enum.dart';
 import 'package:fos_scraper/home/components/option.dart';
 import 'package:fos_scraper/models/app_state.dart';
 import 'package:fos_scraper/scrape_status/scrape_status.dart';
+import 'package:fos_scraper/home/components/text_box.dart';
 
 class SearchOptions extends StatelessWidget {
   const SearchOptions({super.key});
@@ -17,32 +18,19 @@ class SearchOptions extends StatelessWidget {
         converter: (store) => store,
         builder: (context, store) {
           AppState state = store.state;
+
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Row(
                   children: [
-                    fl.InfoLabel(
-                      label: 'Keyword or Product',
-                      child: const SizedBox(
-                        width: 250,
-                        child: fl.TextBox(
-                          autofocus: true,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
+                    TextBox(label: 'Keyword or Product'),
+                    SizedBox(
                       width: 25,
                     ),
-                    fl.InfoLabel(
-                      label: 'Business name',
-                      child: const SizedBox(
-                        width: 250,
-                        child: fl.TextBox(),
-                      ),
-                    ),
+                    TextBox(label: 'Business name'),
                   ],
                 ),
               ),
