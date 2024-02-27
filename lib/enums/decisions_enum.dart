@@ -1,4 +1,4 @@
-enum Decisions {
+enum DecisionsEnum {
   upheld,
   notUpheld,
 }

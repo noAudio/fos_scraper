@@ -7,7 +7,7 @@ class AppState {
   final List<WithinOptionsEnum> withinOptions;
   final DateTime startDate;
   final DateTime endDate;
-  final List<Decisions> decisions;
+  final List<DecisionsEnum> decisions;
   final bool isSearching;
   final String inputErrorMessage;
   final String logicErrorMessage;
@@ -30,7 +30,7 @@ class AppState {
     List<WithinOptionsEnum>? withinOptions,
     DateTime? startDate,
     DateTime? endDate,
-    List<Decisions>? decisions,
+    List<DecisionsEnum>? decisions,
     bool? isSearching,
     String? inputErrorMessage,
     String? logicErrorMessage,
