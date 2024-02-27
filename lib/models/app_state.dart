@@ -5,8 +5,8 @@ class AppState {
   final String keyWord;
   final String businessName;
   final List<WithinOptionsEnum> withinOptions;
-  final DateTime startDate;
-  final DateTime endDate;
+  final DateTime? startDate;
+  final DateTime? endDate;
   final List<DecisionsEnum> decisions;
   final bool isSearching;
   final String inputErrorMessage;
@@ -52,8 +52,8 @@ class AppState {
         keyWord: '',
         businessName: '',
         withinOptions: [],
-        startDate: DateTime.now().subtract(const Duration(days: 365)),
-        endDate: DateTime.now(),
+        startDate: null,
+        endDate: null,
         decisions: [],
         isSearching: false,
         inputErrorMessage: '',
