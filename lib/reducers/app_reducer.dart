@@ -1,5 +1,6 @@
 import 'package:fos_scraper/actions/index.dart';
 import 'package:fos_scraper/actions/remove_decisions_action.dart';
+import 'package:fos_scraper/actions/remove_within_options_action.dart';
 import 'package:fos_scraper/enums/within_options_enum.dart';
 import 'package:fos_scraper/models/app_state.dart';
 
@@ -11,7 +12,10 @@ AppState appReducer(AppState state, dynamic action) {
   } else if (action is AddWithinOptionsAction) {
     return state
         .copyWith(withinOptions: [...state.withinOptions, action.withinOption]);
-    // TODO: create RemoveWithinOptionsAction
+  } else if (action is RemoveWithinOptionsAction) {
+    var withinOptionsList = state.withinOptions;
+    withinOptionsList.remove(action.withinOption);
+    return state.copyWith(withinOptions: withinOptionsList);
   } else if (action is SetDateRangeAction) {
     return state.copyWith(startDate: action.startDate, endDate: action.endDate);
   } else if (action is AddDecisionsAction) {
