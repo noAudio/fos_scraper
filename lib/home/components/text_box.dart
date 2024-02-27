@@ -15,27 +15,28 @@ class TextBox extends fl.StatelessWidget {
   @override
   fl.Widget build(fl.BuildContext context) {
     return StoreConnector<AppState, dynamic>(
-        converter: (store) => store,
-        builder: (context, store) {
-          // Update state as user types
-          void onUpdate(String textInput) {
-            if (label == 'Keyword or Product') {
-              store.dispatch(SetKeyWordAction(keyWord: textInput));
-            } else {
-              store.dispatch(SetBusinessNameAction(businessName: textInput));
-            }
+      converter: (store) => store,
+      builder: (context, store) {
+        // Update state as user types
+        void onUpdate(String textInput) {
+          if (label == 'Keyword or Product') {
+            store.dispatch(SetKeyWordAction(keyWord: textInput));
+          } else {
+            store.dispatch(SetBusinessNameAction(businessName: textInput));
           }
+        }
 
-          return fl.InfoLabel(
-            label: label,
-            child: fl.SizedBox(
-              width: 250,
-              child: fl.TextBox(
-                autofocus: true,
-                onChanged: (value) => onUpdate(value),
-              ),
+        return fl.InfoLabel(
+          label: label,
+          child: fl.SizedBox(
+            width: 250,
+            child: fl.TextBox(
+              autofocus: true,
+              onChanged: (value) => onUpdate(value),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
