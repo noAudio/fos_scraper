@@ -74,12 +74,16 @@ class SearchOptions extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Row(
                   children: [
+                    // TODO: Make sure pickers are disabled while searching
                     fl.DatePicker(
                       header: 'Date from',
                       selected: state.startDate,
-                      onChanged: (time) {
-                        store.dispatch(SetStartDateAction(startDate: time));
-                      },
+                      onChanged: state.isSearching
+                          ? null
+                          : (time) {
+                              store.dispatch(
+                                  SetStartDateAction(startDate: time));
+                            },
                     ),
                     const SizedBox(
                       width: 25,
@@ -87,9 +91,11 @@ class SearchOptions extends StatelessWidget {
                     fl.DatePicker(
                       header: 'Date to',
                       selected: state.endDate,
-                      onChanged: (time) {
-                        store.dispatch(SetEndDateAction(endDate: time));
-                      },
+                      onChanged: state.isSearching
+                          ? null
+                          : (time) {
+                              store.dispatch(SetEndDateAction(endDate: time));
+                            },
                     ),
                   ],
                 ),
