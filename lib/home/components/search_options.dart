@@ -117,6 +117,7 @@ class SearchOptions extends StatelessWidget {
                   ],
                 ),
               ),
+              // TODO: Split into seperate file then build out logic for link building and call scraping function
               fl.FilledButton(
                 onPressed: state.isSearching
                     ? null
