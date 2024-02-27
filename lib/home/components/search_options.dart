@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fos_scraper/actions/index.dart';
 import 'package:fos_scraper/enums/decisions_enum.dart';
 import 'package:fos_scraper/enums/within_options_enum.dart';
+import 'package:fos_scraper/home/components/option.dart';
 import 'package:fos_scraper/models/app_state.dart';
 import 'package:fos_scraper/scrape_status/scrape_status.dart';
 
@@ -140,59 +141,6 @@ class _SearchOptionsState extends State<SearchOptions> {
               ),
               state.isSearching ? const ScrapeStatus() : const SizedBox(),
             ],
-          );
-        });
-  }
-}
-
-class Option extends StatefulWidget {
-  final String label;
-  final dynamic type;
-  const Option({
-    super.key,
-    required this.label,
-    required this.type,
-  });
-
-  @override
-  State<Option> createState() => _OptionState();
-}
-
-class _OptionState extends State<Option> {
-  bool? isChecked = false;
-  @override
-  Widget build(BuildContext context) {
-    return StoreConnector<AppState, dynamic>(
-        converter: (store) => store,
-        builder: (context, store) {
-          void onClick() {
-            if (isChecked!) {
-              if (widget.type is WithinOptionsEnum) {
-                store.dispatch(
-                    AddWithinOptionsAction(withinOption: widget.type));
-              } else {
-                store.dispatch(AddDecisionsAction(decision: widget.type));
-              }
-            } else {
-              if (widget.type is WithinOptionsEnum) {
-                store.dispatch(
-                    RemoveWithinOptionsAction(withinOption: widget.type));
-              } else {
-                store.dispatch(RemoveDecisionsAction(decision: widget.type));
-              }
-            }
-          }
-
-          return fl.InfoLabel(
-            label: widget.label,
-            isHeader: false,
-            child: fl.Checkbox(
-              checked: isChecked,
-              onChanged: (value) {
-                setState(() => isChecked = value);
-                onClick();
-              },
-            ),
           );
         });
   }
