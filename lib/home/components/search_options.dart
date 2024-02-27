@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fos_scraper/actions/index.dart';
 import 'package:fos_scraper/enums/decisions_enum.dart';
 import 'package:fos_scraper/enums/within_options_enum.dart';
+import 'package:fos_scraper/home/components/date_box.dart';
 import 'package:fos_scraper/home/components/option.dart';
 import 'package:fos_scraper/models/app_state.dart';
 import 'package:fos_scraper/scrape_status/scrape_status.dart';
@@ -70,33 +71,14 @@ class SearchOptions extends StatelessWidget {
                 ),
               ),
               // date range
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Row(
                   children: [
                     // TODO: Make sure pickers are disabled while searching
-                    fl.DatePicker(
-                      header: 'Date from',
-                      selected: state.startDate,
-                      onChanged: state.isSearching
-                          ? null
-                          : (time) {
-                              store.dispatch(
-                                  SetStartDateAction(startDate: time));
-                            },
-                    ),
-                    const SizedBox(
-                      width: 25,
-                    ),
-                    fl.DatePicker(
-                      header: 'Date to',
-                      selected: state.endDate,
-                      onChanged: state.isSearching
-                          ? null
-                          : (time) {
-                              store.dispatch(SetEndDateAction(endDate: time));
-                            },
-                    ),
+                    DateBox(label: 'Date from'),
+                    SizedBox(width: 25),
+                    DateBox(label: 'Date to'),
                   ],
                 ),
               ),
