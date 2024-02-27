@@ -1,7 +1,4 @@
 import 'package:fos_scraper/actions/index.dart';
-import 'package:fos_scraper/actions/remove_decisions_action.dart';
-import 'package:fos_scraper/actions/remove_within_options_action.dart';
-import 'package:fos_scraper/enums/within_options_enum.dart';
 import 'package:fos_scraper/models/app_state.dart';
 
 AppState appReducer(AppState state, dynamic action) {
