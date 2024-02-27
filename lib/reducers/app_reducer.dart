@@ -16,8 +16,10 @@ AppState appReducer(AppState state, dynamic action) {
     var withinOptionsList = state.withinOptions;
     withinOptionsList.remove(action.withinOption);
     return state.copyWith(withinOptions: withinOptionsList);
-  } else if (action is SetDateRangeAction) {
-    return state.copyWith(startDate: action.startDate, endDate: action.endDate);
+  } else if (action is SetStartDateAction) {
+    return state.copyWith(startDate: action.startDate);
+  } else if (action is SetEndDateAction) {
+    return state.copyWith(endDate: action.endDate);
   } else if (action is AddDecisionsAction) {
     return state.copyWith(decisions: [...state.decisions, action.decision]);
   } else if (action is RemoveDecisionsAction) {
