@@ -8,23 +8,15 @@ import 'package:fos_scraper/home/components/option.dart';
 import 'package:fos_scraper/models/app_state.dart';
 import 'package:fos_scraper/scrape_status/scrape_status.dart';
 
-class SearchOptions extends StatefulWidget {
+class SearchOptions extends StatelessWidget {
   const SearchOptions({super.key});
-
-  @override
-  State<SearchOptions> createState() => _SearchOptionsState();
-}
-
-class _SearchOptionsState extends State<SearchOptions> {
-  DateTime? endDate;
-  DateTime? startDate;
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, dynamic>(
         converter: (store) => store,
         builder: (context, store) {
-          var state = store.state as AppState;
+          AppState state = store.state;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
