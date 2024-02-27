@@ -17,6 +17,7 @@ class TextBox extends fl.StatelessWidget {
     return StoreConnector<AppState, dynamic>(
       converter: (store) => store,
       builder: (context, store) {
+        AppState state = store.state;
         // Update state as user types
         void onUpdate(String textInput) {
           if (label == 'Keyword or Product') {
@@ -31,6 +32,7 @@ class TextBox extends fl.StatelessWidget {
           child: fl.SizedBox(
             width: 250,
             child: fl.TextBox(
+              enabled: !state.isSearching,
               autofocus: true,
               onChanged: (value) => onUpdate(value),
             ),
