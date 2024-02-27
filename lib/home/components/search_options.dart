@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:fluent_ui/fluent_ui.dart' as fl;
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:fos_scraper/actions/index.dart';
 import 'package:fos_scraper/enums/decisions_enum.dart';
 import 'package:fos_scraper/enums/within_options_enum.dart';
 import 'package:fos_scraper/home/components/date_box.dart';
