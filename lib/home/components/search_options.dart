@@ -104,6 +104,7 @@ class SearchOptions extends StatelessWidget {
                 onPressed: state.isSearching
                     ? null
                     : () {
+                        // example link: https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=estate&BusinessName=house&Business=house&IndustrySectorID%5B1%5D=1&IndustrySectorID%5B2%5D=2&IndustrySectorID%5B3%5D=3&IndustrySectorID%5B4%5D=4&IndustrySectorID%5B5%5D=5&IndustrySectorID%5B6%5D=6&DateFrom=2020-02-27&DateTo=2024-02-27&IsUpheld%5B1%5D=1&IsUpheld%5B0%5D=0&Sort=relevance
                         store.dispatch(SetSearchAction(isSearching: true));
                       },
                 child: fl.Text(state.isSearching ? 'Searching...' : 'Search'),
