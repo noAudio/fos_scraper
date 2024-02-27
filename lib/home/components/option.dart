@@ -47,17 +47,26 @@ class _OptionState extends State<Option> {
 
           return fl.Padding(
             padding: const EdgeInsets.fromLTRB(0, 3, 0, 3),
-            child: fl.InfoLabel(
-              label: widget.label,
-              isHeader: false,
-              child: fl.Checkbox(
-                checked: isChecked,
-                onChanged: state.isSearching
-                    ? null
-                    : (value) {
-                        setState(() => isChecked = value);
-                        onClick();
-                      },
+            child: fl.GestureDetector(
+              onTap: () {
+                // TODO: Check that the behaviour is as expected
+                setState(() {
+                  isChecked = !isChecked!;
+                  onClick();
+                });
+              },
+              child: fl.InfoLabel(
+                label: widget.label,
+                isHeader: false,
+                child: fl.Checkbox(
+                  checked: isChecked,
+                  onChanged: state.isSearching
+                      ? null
+                      : (value) {
+                          setState(() => isChecked = value);
+                          onClick();
+                        },
+                ),
               ),
             ),
           );
