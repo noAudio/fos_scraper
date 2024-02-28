@@ -4,7 +4,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fos_scraper/actions/set_search_action.dart';
 import 'package:fos_scraper/enums/decisions_enum.dart';
 import 'package:fos_scraper/enums/within_options_enum.dart';
+import 'package:fos_scraper/logic/scraper/scraper.dart';
 import 'package:fos_scraper/models/app_state.dart';
+import 'package:intl/intl.dart';
 
 class SearchButton extends StatelessWidget {
   const SearchButton({super.key});
@@ -42,15 +44,18 @@ class SearchButton extends StatelessWidget {
     }
     // TODO: Format dates properly
     // TODO: Check how giving only a start date changes the link
-    String startDate =
-        state.startDate != null ? 'DateFrom=${state.startDate}&' : '';
-    String endDate = state.endDate != null ? 'DateTo=${state.endDate}&' : '';
+    String startDate = state.startDate != null
+        ? 'DateFrom=${DateFormat('yyyy-MM-dd').format(state.startDate!)}&'
+        : '';
+    String endDate = state.endDate != null
+        ? 'DateTo=${DateFormat('yyyy-MM-dd').format(state.endDate!)}&'
+        : '';
     String decisions = '';
     if (state.decisions.isNotEmpty) {
       for (var decision in state.decisions) {
-        var value = decision == DecisionsEnum.upheld
+        var value = decision == DecisionsEnum.notUpheld
             ? 0
-            : decision == DecisionsEnum.notUpheld
+            : decision == DecisionsEnum.upheld
                 ? 1
                 : -1;
         if (value != -1) {
@@ -59,7 +64,7 @@ class SearchButton extends StatelessWidget {
       }
     }
     // TODO: Sort by date
-    return 'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?$keyWord$businessName$withinOptions$startDate$endDate${decisions}Sort=relevance';
+    return 'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?$keyWord$businessName$withinOptions$startDate$endDate${decisions}Sort=date';
   }
 
   @override
@@ -74,8 +79,10 @@ class SearchButton extends StatelessWidget {
               ? null
               : () {
                   String link = linkBuilder(state);
-                  print(link);
                   store.dispatch(SetSearchAction(isSearching: true));
+                  var scraper = Scraper(link: link);
+                  scraper.getData();
+                  store.dispatch(SetSearchAction(isSearching: false));
                 },
           child: fl.Text(state.isSearching ? 'Searching...' : 'Search'),
         );
