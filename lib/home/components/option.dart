@@ -49,7 +49,6 @@ class _OptionState extends State<Option> {
             padding: const EdgeInsets.fromLTRB(0, 3, 0, 3),
             child: fl.GestureDetector(
               onTap: () {
-                // TODO: Check that the behaviour is as expected
                 setState(() {
                   isChecked = !isChecked!;
                   onClick();
