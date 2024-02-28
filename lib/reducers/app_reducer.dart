@@ -29,6 +29,8 @@ AppState appReducer(AppState state, dynamic action) {
     return state.copyWith(inputErrorMessage: action.inputErrorMessage);
   } else if (action is SetLogicErrorMessageAction) {
     return state.copyWith(logicErrorMessage: action.logicErrorMessage);
+  } else if (action is SetInfoMessageAction) {
+    return state.copyWith(infoMessage: action.infoMessage);
   }
   return state;
 }

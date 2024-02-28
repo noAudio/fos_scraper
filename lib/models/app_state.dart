@@ -11,6 +11,7 @@ class AppState {
   final bool isSearching;
   final String inputErrorMessage;
   final String logicErrorMessage;
+  final String infoMessage;
 
   AppState({
     required this.keyWord,
@@ -22,19 +23,20 @@ class AppState {
     required this.isSearching,
     required this.inputErrorMessage,
     required this.logicErrorMessage,
+    required this.infoMessage,
   });
 
-  AppState copyWith({
-    String? keyWord,
-    String? businessName,
-    List<WithinOptionsEnum>? withinOptions,
-    DateTime? startDate,
-    DateTime? endDate,
-    List<DecisionsEnum>? decisions,
-    bool? isSearching,
-    String? inputErrorMessage,
-    String? logicErrorMessage,
-  }) {
+  AppState copyWith(
+      {String? keyWord,
+      String? businessName,
+      List<WithinOptionsEnum>? withinOptions,
+      DateTime? startDate,
+      DateTime? endDate,
+      List<DecisionsEnum>? decisions,
+      bool? isSearching,
+      String? inputErrorMessage,
+      String? logicErrorMessage,
+      String? infoMessage}) {
     return AppState(
       keyWord: keyWord ?? this.keyWord,
       businessName: businessName ?? this.businessName,
@@ -45,6 +47,7 @@ class AppState {
       isSearching: isSearching ?? this.isSearching,
       inputErrorMessage: inputErrorMessage ?? this.inputErrorMessage,
       logicErrorMessage: logicErrorMessage ?? this.logicErrorMessage,
+      infoMessage: infoMessage ?? this.infoMessage,
     );
   }
 
@@ -58,5 +61,6 @@ class AppState {
         isSearching: false,
         inputErrorMessage: '',
         logicErrorMessage: '',
+        infoMessage: '',
       );
 }

@@ -9,3 +9,4 @@ export 'set_logic_error_message_action.dart';
 export 'set_search_action.dart';
 export 'remove_within_options_action.dart';
 export 'remove_decisions_action.dart';
+export 'set_info_message_action.dart';
