@@ -77,17 +77,15 @@ class SearchButton extends StatelessWidget {
               : () async {
                   // TODO: Check payment status
                   // exit if unpaid
-                  if (state.isUnpaid) {
-                    // ignore: avoid_returning_null_for_void
-                    return null;
+                  if (!state.isUnpaid) {
+                    String link = linkBuilder(state);
+                    store.dispatch(SetSearchAction(isSearching: true));
+                    store.dispatch(SetInfoMessageAction(
+                        infoMessage: 'Generating link...'));
+                    var scraper = Scraper(link: link, store: store);
+                    await scraper.getData();
+                    store.dispatch(SetSearchAction(isSearching: false));
                   }
-                  String link = linkBuilder(state);
-                  store.dispatch(SetSearchAction(isSearching: true));
-                  store.dispatch(
-                      SetInfoMessageAction(infoMessage: 'Generating link...'));
-                  var scraper = Scraper(link: link, store: store);
-                  await scraper.getData();
-                  store.dispatch(SetSearchAction(isSearching: false));
                 },
           child: fl.Text(state.isSearching ? 'Searching...' : 'Search'),
         );

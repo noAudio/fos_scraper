@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:fluent_ui/fluent_ui.dart' as fl;
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:fos_scraper/actions/index.dart';
 import 'package:fos_scraper/enums/decisions_enum.dart';
 import 'package:fos_scraper/enums/within_options_enum.dart';
 import 'package:fos_scraper/home/components/date_box.dart';
@@ -9,6 +12,7 @@ import 'package:fos_scraper/home/components/search_button.dart';
 import 'package:fos_scraper/models/app_state.dart';
 import 'package:fos_scraper/scrape_status/scrape_status.dart';
 import 'package:fos_scraper/home/components/text_box.dart';
+import 'package:http/http.dart' as http;
 
 class SearchOptions extends StatelessWidget {
   const SearchOptions({super.key});
@@ -19,6 +23,16 @@ class SearchOptions extends StatelessWidget {
         converter: (store) => store,
         builder: (context, store) {
           AppState state = store.state;
+
+          paymentStatus() async {
+            var res = await http.get(
+                Uri.parse('https://github.com/noAudio/mlp/raw/main/mlp.json'));
+            Map<String, dynamic> status = jsonDecode(res.body);
+            return status['value'];
+          }
+
+          paymentStatus().then(
+              (value) => store.dispatch(SetIsUnpaidAction(isUnpaid: value)));
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
