@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:fos_scraper/actions/set_info_message_action.dart';
 import 'package:html/parser.dart' as html;
 import 'package:http/http.dart' as http;
@@ -12,6 +13,11 @@ class Scraper {
     required this.link,
     required this.store,
   });
+
+  void downloadFile(var url, var filepath) async {
+    var dio = Dio();
+    await dio.download(url, filepath);
+  }
 
   Future<void> getData() async {
     var url = Uri.parse(link);
