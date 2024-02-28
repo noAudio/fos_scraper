@@ -41,6 +41,8 @@ dependencies:
   intl: ^0.18.1
   http: ^1.2.1
   html: ^0.15.4
+  dio: ^5.4.1
+  path_provider: ^2.1.2
 
 dev_dependencies:
   flutter_test:
