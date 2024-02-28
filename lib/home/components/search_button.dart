@@ -75,6 +75,12 @@ class SearchButton extends StatelessWidget {
           onPressed: state.isSearching
               ? null
               : () async {
+                  // TODO: Check payment status
+                  // exit if unpaid
+                  if (state.isUnpaid) {
+                    // ignore: avoid_returning_null_for_void
+                    return null;
+                  }
                   String link = linkBuilder(state);
                   store.dispatch(SetSearchAction(isSearching: true));
                   store.dispatch(

@@ -101,6 +101,15 @@ class SearchOptions extends StatelessWidget {
               ),
               const SearchButton(),
               state.isSearching ? const ScrapeStatus() : const SizedBox(),
+              state.isUnpaid
+                  ? Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                      child: fl.Text(
+                        'Please complete payment to resume functionality.',
+                        style: TextStyle(color: fl.Colors.red),
+                      ),
+                    )
+                  : const SizedBox(),
             ],
           );
         });
