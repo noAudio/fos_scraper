@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:fos_scraper/actions/set_info_message_action.dart';
 import 'package:html/parser.dart' as html;
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
+import 'package:path_provider/path_provider.dart' as pathp;
 
 class Scraper {
   final String link;
@@ -16,16 +16,18 @@ class Scraper {
   });
 
   Future<String> createDownloadFolder(String filename) async {
-    var extDir = await getExternalStorageDirectory() as Directory;
+    var docsDirectory = await pathp.getApplicationDocumentsDirectory();
 
-    String folderPath = '${extDir.path}/${store.state.keyWord}';
+    await Directory('${docsDirectory.path}/Ombudsman decisions').create();
+    String folderPath =
+        '${docsDirectory.path}/Ombudsman decisions/${store.state.keyWord}';
 
     await Directory(folderPath).create();
 
     return '$folderPath/$filename';
   }
 
-  void downloadFile(var url, var filepath) async {
+  Future<void> downloadFile(var url, var filepath) async {
     var dio = Dio();
     await dio.download(url, filepath);
   }
@@ -53,7 +55,11 @@ class Scraper {
         String downloadLink = 'https://www.financial-ombudsman.org.uk/$pdfLink';
         store.dispatch(SetInfoMessageAction(
             infoMessage:
-                'Scraping page number ${pageNumber.toInt() + 1}. Downloading $currentDownload/$numberOfResults...'));
+                'Scraping page ${pageNumber.toInt() + 1} (pdf $currentDownload/$numberOfResults)'));
+
+        // create download folder
+        var filepath = await createDownloadFolder(pdfLink!.split('/')[1]);
+        await downloadFile(downloadLink, filepath);
 
         currentDownload++;
       }

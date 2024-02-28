@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart' as fl;
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:fos_scraper/actions/index.dart';
 import 'package:fos_scraper/actions/set_search_action.dart';
 import 'package:fos_scraper/enums/decisions_enum.dart';
 import 'package:fos_scraper/enums/within_options_enum.dart';
@@ -77,11 +78,13 @@ class SearchButton extends StatelessWidget {
         return fl.FilledButton(
           onPressed: state.isSearching
               ? null
-              : () {
+              : () async {
                   String link = linkBuilder(state);
                   store.dispatch(SetSearchAction(isSearching: true));
-                  var scraper = Scraper(link: link);
-                  scraper.getData();
+                  store.dispatch(
+                      SetInfoMessageAction(infoMessage: 'Generating link...'));
+                  var scraper = Scraper(link: link, store: store);
+                  await scraper.getData();
                   store.dispatch(SetSearchAction(isSearching: false));
                 },
           child: fl.Text(state.isSearching ? 'Searching...' : 'Search'),
