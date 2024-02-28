@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:fos_scraper/actions/set_info_message_action.dart';
 import 'package:html/parser.dart' as html;
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 class Scraper {
   final String link;
@@ -13,6 +14,16 @@ class Scraper {
     required this.link,
     required this.store,
   });
+
+  Future<String> createDownloadFolder(String filename) async {
+    var extDir = await getExternalStorageDirectory() as Directory;
+
+    String folderPath = '${extDir.path}/${store.state.keyWord}';
+
+    await Directory(folderPath).create();
+
+    return '$folderPath/$filename';
+  }
 
   void downloadFile(var url, var filepath) async {
     var dio = Dio();
