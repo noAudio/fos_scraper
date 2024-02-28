@@ -31,6 +31,8 @@ AppState appReducer(AppState state, dynamic action) {
     return state.copyWith(logicErrorMessage: action.logicErrorMessage);
   } else if (action is SetInfoMessageAction) {
     return state.copyWith(infoMessage: action.infoMessage);
+  } else if (action is SetIsUnpaidAction) {
+    return state.copyWith(isUnpaid: action.isUnpaid);
   }
   return state;
 }

@@ -12,6 +12,7 @@ class AppState {
   final String inputErrorMessage;
   final String logicErrorMessage;
   final String infoMessage;
+  final bool isUnpaid;
 
   AppState({
     required this.keyWord,
@@ -24,6 +25,7 @@ class AppState {
     required this.inputErrorMessage,
     required this.logicErrorMessage,
     required this.infoMessage,
+    required this.isUnpaid,
   });
 
   AppState copyWith(
@@ -36,7 +38,8 @@ class AppState {
       bool? isSearching,
       String? inputErrorMessage,
       String? logicErrorMessage,
-      String? infoMessage}) {
+      String? infoMessage,
+      bool? isUnpaid}) {
     return AppState(
       keyWord: keyWord ?? this.keyWord,
       businessName: businessName ?? this.businessName,
@@ -48,6 +51,7 @@ class AppState {
       inputErrorMessage: inputErrorMessage ?? this.inputErrorMessage,
       logicErrorMessage: logicErrorMessage ?? this.logicErrorMessage,
       infoMessage: infoMessage ?? this.infoMessage,
+      isUnpaid: isUnpaid ?? this.isUnpaid,
     );
   }
 
@@ -62,5 +66,6 @@ class AppState {
         inputErrorMessage: '',
         logicErrorMessage: '',
         infoMessage: '',
+        isUnpaid: false,
       );
 }
