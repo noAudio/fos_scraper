@@ -30,7 +30,7 @@ class DateBox extends StatelessWidget {
 
         return fl.DatePicker(
           header: label,
-          selected: state.startDate,
+          selected: label == 'Date from' ? state.startDate : state.endDate,
           onChanged: state.isSearching
               ? null
               : (time) {
