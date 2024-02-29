@@ -17,10 +17,11 @@ class Scraper {
 
   Future<String> createDownloadFolder(String filename) async {
     var docsDirectory = await pathp.getApplicationDocumentsDirectory();
+    String folderName =
+        store.state.keyWord == '' ? DateTime.now() : store.state.keyWord;
 
     await Directory('${docsDirectory.path}/Ombudsman decisions').create();
-    String folderPath =
-        '${docsDirectory.path}/Ombudsman decisions/${store.state.keyWord}';
+    String folderPath = '${docsDirectory.path}/Ombudsman decisions/$folderName';
 
     await Directory(folderPath).create();
 
@@ -49,9 +50,13 @@ class Scraper {
       var pageNumber = pageID == 0 ? 0 : pageID / 10;
       var pageResponse = await http.get(Uri.parse('$link&Start=$pageID'));
       var doc = html.parse(pageResponse.body);
+      var pdfInfoElems = doc.querySelectorAll('.search-result__info-main');
+      int infoNumber = 0;
       var pdfLinks = doc.querySelectorAll('.search-result');
       for (var pdfLinkElement in pdfLinks) {
         var pdfLink = pdfLinkElement.attributes['href'];
+        var info = pdfInfoElems[infoNumber].text.split('\n');
+        print([info[1].trim(), info[5].trim(), info[9].trim()]);
         String downloadLink = 'https://www.financial-ombudsman.org.uk/$pdfLink';
         store.dispatch(SetInfoMessageAction(
             infoMessage:
