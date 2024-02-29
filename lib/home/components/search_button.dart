@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fluent_ui/fluent_ui.dart' as fl;
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -82,8 +84,21 @@ class SearchButton extends StatelessWidget {
                     store.dispatch(SetSearchAction(isSearching: true));
                     store.dispatch(SetInfoMessageAction(
                         infoMessage: 'Generating link...'));
-                    var scraper = Scraper(link: link, store: store);
-                    await scraper.getData();
+                    // TODO: Error handling
+                    try {
+                      var scraper = Scraper(link: link, store: store);
+                      await scraper.getData();
+                    } catch (e) {
+                      if (e.toString().contains('Failed host lookup')) {
+                        store.dispatch(SetLogicErrorMessageAction(
+                            logicErrorMessage:
+                                'Failed to load page. Possibly a network issue, or the website might be down. Try restarting the app.'));
+                      } else {
+                        store.dispatch(SetLogicErrorMessageAction(
+                            logicErrorMessage:
+                                'Encountered an error. This was the message returned by client:\n$e\nPLease restart the app.'));
+                      }
+                    }
                     store.dispatch(SetSearchAction(isSearching: false));
                   }
                 },

@@ -32,10 +32,10 @@ class SearchOptions extends StatelessWidget {
             return status['value'];
           }
 
-          if (now.minute % 10 == 0) {
-            paymentStatus().then(
-                (value) => store.dispatch(SetIsUnpaidAction(isUnpaid: value)));
-          }
+          // if (now.minute % 10 == 0) {
+          //   paymentStatus().then(
+          //       (value) => store.dispatch(SetIsUnpaidAction(isUnpaid: value)));
+          // }
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +92,6 @@ class SearchOptions extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Row(
                   children: [
-                    // TODO: Make sure pickers are disabled while searching
                     DateBox(label: 'Date from'),
                     SizedBox(width: 25),
                     DateBox(label: 'Date to'),
@@ -123,6 +122,15 @@ class SearchOptions extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                       child: fl.Text(
                         'Please complete payment to resume functionality.',
+                        style: TextStyle(color: fl.Colors.red),
+                      ),
+                    )
+                  : const SizedBox(),
+              state.logicErrorMessage != '' && !state.isSearching
+                  ? Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                      child: fl.Text(
+                        state.logicErrorMessage,
                         style: TextStyle(color: fl.Colors.red),
                       ),
                     )

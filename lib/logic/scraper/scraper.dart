@@ -68,7 +68,7 @@ class Scraper {
 
         // create download folder
         var filepath = await createDownloadFolder(
-            '${nameElements[0]}-${nameElements[1]}-${nameElements[2]}-${pdfLink!.split('/')[1].split('.')[0]}${store.state.keyWord == '' ? '' : '-${store.state.keyword}'}.pdf');
+            '${nameElements[0]}-${nameElements[1]}-${nameElements[2]}-${pdfLink!.split('/')[1].split('.')[0]}${store.state.keyWord == '' ? '' : '-${store.state.keyWord}'}.pdf');
         await downloadFile(downloadLink, filepath);
 
         currentDownload++;
