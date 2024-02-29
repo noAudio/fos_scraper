@@ -23,19 +23,21 @@ class SearchOptions extends StatelessWidget {
         converter: (store) => store,
         builder: (context, store) {
           AppState state = store.state;
-          var now = DateTime.now();
 
           paymentStatus() async {
-            var res = await http.get(
-                Uri.parse('https://github.com/noAudio/mlp/raw/main/mlp.json'));
-            Map<String, dynamic> status = jsonDecode(res.body);
-            return status['value'];
+            try {
+              var res = await http.get(Uri.parse(
+                  'https://github.com/noAudio/mlp/raw/main/mlp.json'));
+              Map<String, dynamic> status = jsonDecode(res.body);
+              return status['value'];
+            } catch (e) {
+              //
+              return false;
+            }
           }
 
-          // if (now.minute % 10 == 0) {
-          //   paymentStatus().then(
-          //       (value) => store.dispatch(SetIsUnpaidAction(isUnpaid: value)));
-          // }
+          paymentStatus().then(
+              (value) => store.dispatch(SetIsUnpaidAction(isUnpaid: value)));
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
