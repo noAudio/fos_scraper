@@ -56,14 +56,19 @@ class Scraper {
       for (var pdfLinkElement in pdfLinks) {
         var pdfLink = pdfLinkElement.attributes['href'];
         var info = pdfInfoElems[infoNumber].text.split('\n');
-        print([info[1].trim(), info[5].trim(), info[9].trim()]);
+        var nameElements = [
+          info[1].trim(), //date
+          info[5].trim(), //company name
+          info[9].trim(), //decision
+        ];
         String downloadLink = 'https://www.financial-ombudsman.org.uk/$pdfLink';
         store.dispatch(SetInfoMessageAction(
             infoMessage:
                 'Scraping page ${pageNumber.toInt() + 1} (pdf $currentDownload/$numberOfResults)'));
 
         // create download folder
-        var filepath = await createDownloadFolder(pdfLink!.split('/')[1]);
+        var filepath = await createDownloadFolder(
+            '${nameElements[0]}-${nameElements[1]}-${nameElements[2]}-${pdfLink!.split('/')[1].split('.')[0]}-${store.state.keyWord}.pdf');
         await downloadFile(downloadLink, filepath);
 
         currentDownload++;
