@@ -23,6 +23,7 @@ class SearchOptions extends StatelessWidget {
         converter: (store) => store,
         builder: (context, store) {
           AppState state = store.state;
+          var now = DateTime.now();
 
           paymentStatus() async {
             var res = await http.get(
@@ -31,8 +32,10 @@ class SearchOptions extends StatelessWidget {
             return status['value'];
           }
 
-          paymentStatus().then(
-              (value) => store.dispatch(SetIsUnpaidAction(isUnpaid: value)));
+          if (now.minute % 10 == 0) {
+            paymentStatus().then(
+                (value) => store.dispatch(SetIsUnpaidAction(isUnpaid: value)));
+          }
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
