@@ -53,6 +53,7 @@ class Scraper {
       var pdfInfoElems = doc.querySelectorAll('.search-result__info-main');
       int infoNumber = 0;
       var pdfLinks = doc.querySelectorAll('.search-result');
+
       for (var pdfLinkElement in pdfLinks) {
         var pdfLink = pdfLinkElement.attributes['href'];
         var info = pdfInfoElems[infoNumber].text.split('\n');
@@ -72,6 +73,7 @@ class Scraper {
         await downloadFile(downloadLink, filepath);
 
         currentDownload++;
+        infoNumber++;
       }
 
       pageID += 10;
